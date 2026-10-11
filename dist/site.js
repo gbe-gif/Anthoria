@@ -39,14 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
   corePlan?.addEventListener('change', renderCoreAnswer);
   renderCoreAnswer();
-  document.querySelectorAll('[data-copy-command]').forEach(button => button.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(button.dataset.copyCommand);
-      button.textContent = '복사 완료';
-    } catch {
-      button.textContent = button.dataset.copyCommand;
-    }
-  }));
   const covers = [...document.querySelectorAll('.cover-frame img')];
   const dots = [...document.querySelectorAll('.cover-dots button')];
   let current = 0;
