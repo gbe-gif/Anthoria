@@ -276,6 +276,25 @@ button { font: inherit; }
 .lead-profile { padding-bottom:64px; scroll-margin-top:24px; }
 .lead-profile .character { padding-bottom:36px; }
 .lead-profile .portrait img { border-radius:24px; }
+.lead-profile .portrait img { object-fit:contain; }
+.cast-features { display:grid; gap:26px; padding-bottom:50px; }
+.cast-feature { display:grid; grid-template-columns:minmax(230px,.68fr) minmax(0,1.32fr); align-items:start; gap:40px; }
+.cast-portrait { margin:0; position:relative; z-index:1; }
+.cast-portrait img { display:block; width:100%; height:auto; object-fit:contain; border-radius:16px; }
+.cast-feature-content { min-width:0; align-self:center; position:relative; z-index:1; }
+.cast-feature h2 { font-size:clamp(30px,4vw,43px); }
+.cast-feature .fact-list { font-size:14px; }
+.cast-feature.dark .fact-list li,.cast-feature.dark .profile-info dd { color:#e1e5eb; }
+.cast-feature.dark .profile-info dt { color:#c4b1b7; }
+.cast-feature.dark .role { color:#e2a7a7; }
+.cast-feature.dark .badge { color:#fff; background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.22); }
+.cast-feature.dark .profile-info-list { border-color:rgba(255,255,255,.2); }
+.spirit-intro { margin:16px 0 25px; }.spirit-intro h2 { margin:10px 0; font:700 32px var(--serif); }
+@media (max-width:800px) {
+  .cast-feature { grid-template-columns:1fr; gap:26px; }
+  .cast-portrait { width:min(100%,290px); margin:0 auto; }
+  .cast-feature .badges { margin-bottom:22px; }
+}
 .lead-profile .badges { margin-bottom:22px; }
 .profile-info-list { display:grid; gap:14px; margin:26px 0 0; padding-top:24px; border-top:1px solid var(--line); font-size:14px; }
 .profile-info { display:grid; grid-template-columns:68px minmax(0,1fr); gap:14px; }
