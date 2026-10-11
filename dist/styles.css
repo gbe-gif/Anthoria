@@ -331,3 +331,21 @@ button { font: inherit; }
   .profile-past { padding:0 22px; }.profile-past summary { flex-wrap:wrap; font-size:20px; }.profile-past summary small { flex-basis:calc(100% - 38px); order:3; }
   .profile-history li { grid-template-columns:74px minmax(0,1fr); gap:14px; }
 }
+
+/* App browsers: retain room for home indicators and the on-screen keyboard. */
+.modal { overflow-y:auto; }
+.modal-card { max-height:calc(100dvh - 40px); overflow-y:auto; }
+.footer { overflow-wrap:anywhere; }
+@media (max-width:800px) {
+  .shell { width:auto; max-width:620px; margin-left:max(12px,env(safe-area-inset-left)); margin-right:max(12px,env(safe-area-inset-right)); }
+  .footer { padding-bottom:calc(110px + env(safe-area-inset-bottom)); }
+  .mobile-nav { left:max(10px,env(safe-area-inset-left)); right:max(10px,env(safe-area-inset-right)); bottom:calc(10px + env(safe-area-inset-bottom)); }
+  .modal { padding-top:max(20px,env(safe-area-inset-top)); padding-bottom:max(20px,env(safe-area-inset-bottom)); }
+  .demo-plan-label select { font-size:16px; }
+}
+@media (min-width:644px) and (max-width:800px) {
+  .shell { margin-left:auto; margin-right:auto; }
+}
+@media (max-width:600px) {
+  .topbar .chapter { display:none; }
+}
