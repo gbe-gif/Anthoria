@@ -57,7 +57,7 @@ for (const page of pages) {
   const sourceStrings = withoutScripts.split(/<[^>]+>/).map(text => text.trim());
   for (const attr of withoutScripts.matchAll(/(?:alt|aria-label|content)="([^"]+)"/g)) sourceStrings.push(attr[1]);
   for (const source of sourceStrings) {
-    if (!/[가-힣]/.test(source) || source === '한국어') continue;
+    if (!/[가-힣]/.test(source) || /^(?:Language · )?한국어$/.test(source)) continue;
     for (const locale of ['en', 'ja']) {
       const translated = i18n.t(source, locale);
       assert.notEqual(translated, source, `${page}: ${source} (${locale})`);
