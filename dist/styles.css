@@ -12,6 +12,14 @@
   --serif: "Noto Serif KR", "Nanum Myeongjo", "Batang", serif;
   --sans: "Pretendard", "SUIT", "Noto Sans KR", sans-serif;
 }
+:root:lang(ja) {
+  --serif: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+}
+:root:lang(en) {
+  --serif: "Noto Serif KR", Georgia, serif;
+  --sans: "Noto Sans KR", Arial, sans-serif;
+}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -348,4 +356,36 @@ button { font: inherit; }
 }
 @media (max-width:600px) {
   .topbar .chapter { display:none; }
+}
+
+.brand-row { display:flex; align-items:center; gap:16px; min-width:0; }
+.language-control { display:inline-flex; }
+.language-control select { min-height:44px; max-width:112px; padding:8px 12px; border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.8); color:var(--ink); font:600 14px var(--sans); cursor:pointer; }
+.language-control select:focus-visible { outline:3px solid var(--rose); outline-offset:3px; }
+.private-page .language-control select { background:#22314a; color:#fff; border-color:rgba(255,255,255,.3); }
+.hero-actions { flex-wrap:wrap; }
+.panel-heading h3,.event-name { min-width:0; overflow-wrap:break-word; }
+.panel-heading .rating-badge { flex-shrink:0; }
+.profile-info dt { overflow-wrap:break-word; }
+.page-intro h1,.profile-name,.gallery-title h2,.unlock-card h2 { overflow-wrap:break-word; }
+:lang(en) .hero h1 { font-size:clamp(36px,5.5vw,72px); line-height:1.2; letter-spacing:-.045em; }
+:lang(en) .profile-name { font-size:clamp(32px,4.5vw,56px); line-height:1.2; }
+:lang(en) .profile-name small { line-height:1.5; letter-spacing:.07em; }
+:lang(en) .event-date { font-size:19px; }
+:lang(en) .event-date.range { font-size:16px; }
+:lang(en) .eyebrow,:lang(ja) .eyebrow { letter-spacing:.1em; }
+:lang(ja) .hero h1 { letter-spacing:-.04em; }
+:lang(en) .profile-jump a { align-items:center; flex-wrap:wrap; }
+@media (max-width:1100px) { .topbar .chapter { display:none; } }
+@media (max-width:800px) {
+  .topbar { height:auto; min-height:68px; padding-top:10px; padding-bottom:10px; }
+  .brand-row { width:100%; justify-content:space-between; gap:10px; }
+  .language-control select { font-size:16px; }
+  :lang(en) .hero h1 { font-size:clamp(33px,8.5vw,46px); }
+  :lang(en) .profile-name { font-size:34px; }
+  .gallery-title { align-items:start; flex-wrap:wrap; gap:8px; }
+  .calendar-event summary { gap:10px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .cover-frame img { transform:none; }
 }

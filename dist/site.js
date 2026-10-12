@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const copy = (text) => window.AnthoriaI18n?.t(text) ?? text;
   const coreAnswers = {
     minerva: {
       name: '미네르바',
@@ -25,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const renderCoreAnswer = () => {
     if (!corePlan) return;
     const model = coreAnswers[selectedCoreModel];
-    document.querySelector('#demo-answer').textContent = model[corePlan.value];
-    document.querySelector('#demo-model-caption').textContent = `${model.name} · ${corePlan.value}`;
+    document.querySelector('#demo-answer').textContent = window.AnthoriaI18n?.coreAnswer(selectedCoreModel, corePlan.value, model[corePlan.value]) ?? model[corePlan.value];
+    document.querySelector('#demo-model-caption').textContent = `${copy(model.name)} · ${corePlan.value}`;
     coreModelButtons.forEach(button => {
       const active = button.dataset.coreModel === selectedCoreModel;
       button.classList.toggle('active', active);
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCoreAnswer();
   }));
   corePlan?.addEventListener('change', renderCoreAnswer);
+  document.addEventListener('anthoria:languagechange', renderCoreAnswer);
   renderCoreAnswer();
   const covers = [...document.querySelectorAll('.cover-frame img')];
   const dots = [...document.querySelectorAll('.cover-dots button')];
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dots.forEach((el,n) => el.classList.toggle('active', n === i));
   };
   dots.forEach((dot,i) => dot.addEventListener('click', () => show(i)));
-  if (covers.length > 1) setInterval(() => show((current + 1) % covers.length), 4200);
+  // The cover is an animated WebP; its own frame timing controls playback.
 
   const tabs = [...document.querySelectorAll('.log-tabs button')];
   const panels = [...document.querySelectorAll('.log-panel')];
@@ -71,6 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = document.querySelector('#password-modal');
   const passwordInput = document.querySelector('#archive-password');
   const error = document.querySelector('#password-error');
+  document.addEventListener('anthoria:languagechange', () => {
+    if (error?.textContent) error.textContent = copy('비밀번호가 맞지 않습니다.');
+  });
   const openModal = () => { modal?.classList.add('open'); passwordInput?.focus(); };
   const closeModal = () => { modal?.classList.remove('open'); if (error) error.textContent = ''; };
   document.querySelectorAll('[data-open-archive]').forEach(x => x.addEventListener('click', openModal));
@@ -84,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sessionStorage.setItem('anthoriaArchive', 'open');
       location.href = 'archive.html';
     } else {
-      error.textContent = '비밀번호가 맞지 않습니다.';
+      error.textContent = copy('비밀번호가 맞지 않습니다.');
       passwordInput.select();
     }
   });
